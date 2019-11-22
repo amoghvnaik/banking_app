@@ -14,7 +14,7 @@ while loop == 0:
             except ValueError:
                 print("Please enter a valid number")
                 continue
-            while loop2 ==0:
+            while loop2 == 0:
                 sure = input("Are you sure?(Y/N)")
                 if sure == 'Y':
                     print("Thank you. Your money has been deposited.")

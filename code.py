@@ -1,6 +1,5 @@
 from pymysql import connect
 import os
-import sys
 
 connection = connect(
     host = os.getenv('MYSQL_HOST'),
@@ -23,9 +22,9 @@ while loop == 0:
                 query = 'insert into account (name, password) values("' + name + '", "' + password +'");'
                 cursor.execute(query)
             connection.commit()
-            print("Thank you for creating your account with us.")
-        except:
-            print('Failed')
+        finally:
+            pass
+        print("Thank you for creating your account with us.")
     elif menu == 2:
         while loop1 == 0:
             try:
@@ -40,10 +39,10 @@ while loop == 0:
                         with connection.cursor() as cursor:
                             query = 'insert into money (deposit) values("' + str(deposit) + '")'
                             cursor.execute(query)
-                        connection.commit()
-                        print("Thank you. Your money has been deposited.")
-                    except:
-                        print("Failed")                    
+                        connection.commit()     
+                    finally:
+                        pass                   
+                    print("Thank you. Your money has been deposited.")
                     break
                 elif sure == 'N':
                     break
@@ -67,10 +66,10 @@ while loop == 0:
                             query = 'insert into money (withdrawal) values("' + str(withdrawal) + '")'
                             cursor.execute(query)
                         connection.commit()
-                        print("Thank you. Your money has been withdrawn.")
-                    except:
-                        print("Failed")                   
-                    sys.exit()
+                    finally:
+                        pass
+                    print("Thank you. Your money has been withdrawn.")
+                    break
                 elif sure == 'N':
                     break
                 else:
@@ -86,8 +85,8 @@ while loop == 0:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 print(result)
-        except:
-            print("Failed")
+        finally:
+            pass
     elif menu == 5:
         connection.close()
         break
